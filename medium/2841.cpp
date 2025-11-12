@@ -13,17 +13,29 @@ public:
         {
             hash[nums[i]]++;
             sum+=nums[i];
-            if(i<k)
+            // if(i<k)
+            // {
+            //     continue;
+            // }
+            if(i>=k)
             {
-                continue;
+                sum-=nums[i-k];
+                hash[nums[i-k]]--;
+                if(hash[nums[i-k]]==0)
+                    hash.erase(nums[i-k]);
+
             }
-            int t=0;
-            for (const auto &p : hash) {           
-               t+=p.second;
-                if(t==k)
-                    result=max(result,sum);
-                hash[nums[i-k+1]]--;
+            if (i >= k - 1 && hash.size() >= m) {
+                result = max(result, sum);
             }
+
+            // int t=0;
+            // for (const auto &p : hash) {           
+            //    t+=p.second;
+            //     if(t==k)
+            //         result=max(result,sum);
+            //     hash[nums[i-k+1]]--;
+            // }
         }
         return result;
     }
