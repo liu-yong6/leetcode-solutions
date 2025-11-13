@@ -7,23 +7,23 @@ class Solution {
 public:
     int maxSatisfied(vector<int>& customers, vector<int>& grumpy, int minutes) {
         int ans=0;
-        for(int i=0;i<customers.size();i++)
-        {
-            if(grumpy[i]==0)
-                ans+=customers[i];
-
-        }
         int cus=0,sum=0;
         for(int i=0;i<customers.size();i++)
         {
             if(grumpy[i]==1)
                 cus+=customers[i];
-            sum=max(cus,sum);
+            else
+                ans+=customers[i];
+
+            
             if(i>=minutes)
-            {   
+            {     
                 if(grumpy[i-minutes]==1)
                     cus-=customers[i-minutes];
             }
+            sum=max(cus,sum);
+
+
         }
         return sum+ans;
         
