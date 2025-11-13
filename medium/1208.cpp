@@ -6,19 +6,17 @@ using namespace std;
 class Solution {
 public:
     int equalSubstring(string s, string t, int maxCost) {
-        int ans=0;
-        for(int i=maxCost;i>=0;i--)
+        int ans=0,left=0,m=0;
+        for(int i=0;i<s.size();i++)
         {
-            for(int left=0;left<s.size()-maxCost-1;i++)
+            m+=abs(s[i]-t[i]);
+            while(m>maxCost)
             {
-                int count=0;
-                for(int j=0;j<i;j++)
-                {
-                    count+=abs(s[left+j]-t[left+j]);
-                }
-                if(count==maxCost)
-                    ans=max(i,ans);
+                m-=abs(s[left]-t[left]);
+                left++;
             }
+            ans=max(ans,i-left+1);
+            
         }
         return ans;
     }
