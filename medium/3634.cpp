@@ -9,14 +9,16 @@ public:
         int left=0,right = nums.size()-1;
         sort(nums.begin(),nums.end());
         int ans=0;
-        while(nums[right]>nums[left]*k)
+        for(int i=0;i<nums.size();i++)
         {
-            if(nums[left+1]-nums[left]>nums[right]-nums[right-1])
+            // 1LL * 是 C++ 中的一个常见写法，用于将整数提升为 long long 类型
+            while(nums[i]>1LL*nums[left]*k)
+            {
                 left++;
-            else
-                right--;
-            ans++;
+            }
+            ans = max(ans,i-left+1);
         }
-        return ans;
+        
+        return nums.size()-ans;
     }
 };
