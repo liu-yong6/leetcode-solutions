@@ -5,12 +5,7 @@
 using namespace std;
 class Solution {
 public:
-    int maximumUniqueSubarray(vector<int>& nums) {
-        int sum=0;
-        for(int i=0;i<nums.size();i++)
-        {
-            sum+=nums[i];
-        }
+    int maximumUniqueSubarray(vector<int>& nums) {   
         int left=0,temp=0,res=0;
         unordered_map<int,int> count;
         for(int right=0;right<nums.size();right++)
