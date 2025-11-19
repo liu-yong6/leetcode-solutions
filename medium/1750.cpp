@@ -9,23 +9,15 @@ class Solution {
 public:
     int minimumLength(string s) {
         int left=0,right=s.size()-1,len=s.size();
-        while(left<right)
+        while(left<right&&s[left]==s[right])
         {
-            if(s[left]==s[right])
-            {
-                while(left+1<=right&&s[left+1]==s[left])
-                    left++;
-                while(right>=0&&s[right-1]==s[right])
-                    right--;
+            char c=s[left];
+            while(left<=right&&s[left]==c)
                 left++;
+            while(left<=right&&s[right]==c)
                 right--;
-            }
-            else
-                break;
         }
-        if(right-left<=0)
-            return 0;
-        else
-            return right-left+1;
+        
+        return right-left+1;
     }
 };
