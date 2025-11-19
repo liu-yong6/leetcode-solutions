@@ -12,18 +12,14 @@ public:
         for(int i=0;i<len;i++)
         {
             count[fruits[i]]++;
-            t++;
-            if(count.size()>2)
+            while(count.size()>2)
             {
-                result=max(t,result);//最大值在每次移动都需要判断，并且需要在判断尺寸后再进行赋值
-                while(count.size()>2)
-                {
-                    count[fruits[left]]--;
-                    left++;//left在未判断就自增
-                    if(count[fruits[left]]==0)
-                        count.erase(fruits[left]);
-                }
+                count[fruits[left]]--;
+                if(count[fruits[left]]==0)
+                    count.erase(fruits[left]);
+                left++;//left在未判断就自增    
             }
+            result=max(result,i-left+1);//最大值在每次移动都需要判断，并且需要在判断尺寸后再进行赋值
         }
         return result;
         
