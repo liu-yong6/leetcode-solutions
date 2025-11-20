@@ -12,26 +12,21 @@ public:
         int res=0,a=capacityA,b=capacityB;
         while(left<right)
         {
-            if(a>=plants[left])
-            {
-                a-=plants[left];
-                left++;
-            }
-            else
+            if(a<plants[left])
             {
                 a=capacityA;
-                res++;
+                res++;   
             }
-            if(b>=plants[right])
-            {
-                b-=plants[right];
-                right--;
-            }
-            else
+            a-=plants[left];
+            left++;
+            
+            if(b<plants[right])
             {
                 b=capacityB;
-                res++;
+                res++;  
             }
+            b-=plants[right];
+            right--;
         }
         if(left==right&&max(a,b)<plants[left])
             res++;
