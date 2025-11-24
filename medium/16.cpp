@@ -21,6 +21,7 @@ public:
                 int t = nums[i]+nums[left]+nums[right];
                 if(t==target)
                     return target;
+                // 如果比目标值大，则与最小差值比较
                 if(t>target)
                 {
                     if(t - target < m)
