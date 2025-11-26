@@ -8,24 +8,24 @@ class Solution {
 public:
     vector<int> sortedSquares(vector<int>& nums) {
         vector<int> res(nums.size());
+        vector<int> count;
         int left=0,right = nums.size()-1,len=nums.size()-1;
-        while(left<right)
+        for(int i=1;i<s.size();i++)
         {
-            if(pow(nums[left],2)>=pow(nums[right],2))
-            {
-                res[len]=pow(nums[left],2);
-                len--;
-                left++;
-            }
+            if(s[i]==s[i-1])
+                t++;
             else
             {
-                res[len]=pow(nums[right],2);
-                len--;
-                right--;
+                count.push_back(t);
+                t=1;
             }
         }
-        if(left==right)
-            res[0]= pow(nums[right],2);
+        count.push_back(t);
+        for(int i=0;i<count.size()-1;i++)
+        {
+            ans+=min(count[i],count[i+1]);
+        }
+        
         return res;
     }
 };
